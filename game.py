@@ -1,4 +1,4 @@
-import win32api as wapi
+import keyboard
 import pyautogui
 from PIL import ImageGrab, ImageOps
 
@@ -46,7 +46,7 @@ def singleGame():
 
     while True:
         # check if it is end of the round or we are forcing quit
-        if getBtnImg().getpixel((25,160)) < 100 or wapi.GetAsyncKeyState(ord("Q")):
+        if getBtnImg().getpixel((25,160)) < 100 or keyboard.is_pressed("q"):
             return
 
         # get gauge image
@@ -90,7 +90,7 @@ def mainLoop():
     retries = 1
     wd = os.getcwd()
     while True:
-        if wapi.GetAsyncKeyState(ord("A")):
+        if keyboard.is_pressed("a"):
 
             # prepare screenshots directory
             dir = os.path.join(wd, "ss", datetime.now().strftime("%Y%m%d%H%M%S"))
@@ -111,7 +111,7 @@ def mainLoop():
                 time.sleep(5)
                 pyautogui.moveTo(1000, 400)
                 print("End of loop")
-        if wapi.GetAsyncKeyState(ord("F")):
+        if keyboard.is_pressed("f"):
                 while True:
                     try:
                         inp = int(input("Define numer of games [1-100]: "))
@@ -121,7 +121,7 @@ def mainLoop():
                     except:
                         print("That's not a valid option!")
 
-        if wapi.GetAsyncKeyState(ord("X")):
+        if keyboard.is_pressed("x"):
             break
 
 
